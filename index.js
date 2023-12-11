@@ -28,12 +28,15 @@ app.use((req, res, next) => {
 //   next();
 // });
 
+/**HealthCheck URL for API to check if API working */
 app.get("/healthcheck", (req, res) => {
   res.send("Polling system working fine");
 });
 
+/**Router entry point */
 app.use("/", require("./src/router/poll.routes"));
 
+/**In case of unknown errors */
 process.on("uncaughtException", (err) => {
   console.error("uncaughtException", err);
 });
@@ -42,6 +45,7 @@ process.on("unhandledRejection", (err) => {
   console.error("unhandledRejection", err);
 });
 
+/**Started the server */
 app.listen(4001, () => {
   console.log("Server started on port 4001");
 });

@@ -7,6 +7,7 @@ const {
   getQuestionDetails,
 } = require("../subscriber/db.subscriber");
 
+/** Cotroller to create question*/
 const createQuestion = async (req, res, next) => {
   try {
     const { qid, title } = req.body;
@@ -46,6 +47,7 @@ const createQuestion = async (req, res, next) => {
   }
 };
 
+/** Cotroller to add option*/
 const addOption = async (req, res, next) => {
   try {
     const { oid, qid, title } = req.body;
@@ -81,6 +83,7 @@ const addOption = async (req, res, next) => {
   }
 };
 
+/** Cotroller to delete question*/
 const deleteQuestion = async (req, res, next) => {
   try {
     const questionId = req.params.id;
@@ -121,6 +124,7 @@ const deleteQuestion = async (req, res, next) => {
   }
 };
 
+/** Cotroller to delete option*/
 const deleteOption = async (req, res, next) => {
   try {
     const optionId = req.params.id;
@@ -161,6 +165,7 @@ const deleteOption = async (req, res, next) => {
   }
 };
 
+/** Cotroller to add votes*/
 const incrementVotes = async (req, res, next) => {
   try {
     const optionId = req.params.id;
@@ -196,6 +201,7 @@ const incrementVotes = async (req, res, next) => {
   }
 };
 
+/** Cotroller to get question*/
 const viewQuestion = async (req, res, next) => {
   try {
     const questionId = req.params.id;

@@ -1,6 +1,12 @@
 const { getDBConn } = require("../database/mongo.database.js");
 const environmet = "http://localhost:4001";
 
+/**
+ *
+ * @param {string} qid questionId
+ * @param {String} title Question title
+ * @returns Object with flag for question inserted or not
+ */
 const insertQuestion = async (qid, title) => {
   try {
     const database = await getDBConn();
@@ -17,6 +23,13 @@ const insertQuestion = async (qid, title) => {
   }
 };
 
+/**
+ *
+ * @param {string} oid option id
+ * @param {string} qid question id
+ * @param {string} title option title
+ * @returns Object with flag for option inserted or not
+ */
 const insertOptions = async (oid, qid, title) => {
   try {
     const database = await getDBConn();
@@ -33,6 +46,11 @@ const insertOptions = async (oid, qid, title) => {
   }
 };
 
+/**
+ *
+ * @param {string} qid question id
+ * @returns flag
+ */
 const removeQuestion = async (qid) => {
   try {
     const database = await getDBConn();
@@ -49,6 +67,11 @@ const removeQuestion = async (qid) => {
   }
 };
 
+/**
+ *
+ * @param {option id} oid
+ * @returns
+ */
 const removeOption = async (oid) => {
   try {
     const database = await getDBConn();
@@ -65,6 +88,11 @@ const removeOption = async (oid) => {
   }
 };
 
+/**
+ *
+ * @param {string} oid Option Id
+ * @returns flag for confirmation
+ */
 const addVotes = async (oid) => {
   try {
     const database = await getDBConn();
@@ -87,6 +115,11 @@ const addVotes = async (oid) => {
   }
 };
 
+/**
+ *
+ * @param {question id} qid string
+ * @returns question details along with option
+ */
 const getQuestionDetails = async (qid) => {
   try {
     const database = await getDBConn();
@@ -133,6 +166,11 @@ const getQuestionDetails = async (qid) => {
   }
 };
 
+/**
+ *
+ * @param {object} qData question data
+ * @returns
+ */
 const formatResponse = (qData) => {
   try {
     const optionData = qData.map((item) => item.Options);

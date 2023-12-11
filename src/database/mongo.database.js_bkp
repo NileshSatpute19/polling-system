@@ -1,0 +1,48 @@
+const { MongoClient } = require("mongodb");
+
+// Connection URL
+const url = "mongodb://0.0.0.0:27017/";
+const client = new MongoClient(url, { minPoolSize: 2, maxPoolSize: 10 });
+
+// Database Name
+const dbName = "Polling-system";
+
+const mongoConn = async () => {
+  try {
+    // Use connect method to connect to the server
+    await client.connect();
+    console.log("Connected successfully to server");
+    return client;
+  } catch (error) {
+    console.log("Error in DB connection", error);
+    throw error;
+  }
+};
+
+const executeQuery = async (client) => {
+  const db = client.db(dbName);
+  const Options = db.collection("Options");
+  const Questions = db.collection("Questions");
+  // client.close();
+};
+
+mongoConn();
+
+const executeMongoQuery = async (document) => {
+  const db = client.db(dbName);
+  const Options = db.collection("Options");
+  const Questions = db.collection("Questions");
+  document === "Options" ? Options : Questions;
+  const result = await executeQuery(client);
+  client.close();
+  return result;
+};
+
+// const pollDB = await mongoConn();
+
+// main()
+//   .then(console.log)
+//   .catch(console.error)
+//   .finally(() => client.close());
+
+module.exports = { mongoConn, executeMongoQuery };
